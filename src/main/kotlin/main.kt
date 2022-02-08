@@ -6,12 +6,15 @@ fun main(args: Array<String>) {
     val enderecoNovo = Endereco("Avenida Domingo de Morais",1036,"Vila Mariana", "São Paulo", "São Paulo")
 
     println(endereco.equals(enderecoNovo))
+    println()
     println(endereco.hashCode())
     println(enderecoNovo.hashCode())
+    println()
 
     println("Endereço: \n $endereco")
     println()
     println("Endereço Novo: \n $enderecoNovo")
+
 }
 
 
