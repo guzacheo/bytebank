@@ -1,26 +1,13 @@
-import br.com.alura.bytebank.modelo.Autenticavel
-import br.com.alura.bytebank.modelo.Conta
-import br.com.alura.bytebank.modelo.SistemaInterno
-
 fun main(args: Array<String>) {
-    println()
-    testaContasDiferentes()
 
-    println()
-    println("Total de contas criadas: ${Conta.totalContas}")
-    println()
-
-    val fran = object : Autenticavel {
-        val nome: String = "Fran"
-        val cpf: String = "222.222.222-22"
-        val senha: Int = 1000
-
-        override fun auth(senha: Int): Boolean = this.senha == senha
+    fun imprimir(valor: Any): Any {
+        return valor
     }
 
-    val sistemaInterno = SistemaInterno()
-    sistemaInterno.entra(fran, 1000)
+    println(message = imprimir(true))
 }
+
+
 
 
 
