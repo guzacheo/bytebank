@@ -1,12 +1,13 @@
 package br.com.alura.bytebank.modelo
 
+import br.com.alura.bytebank.exception.FalhaAutenticacaoException
 import br.com.alura.bytebank.exception.SaldoInsuficienteException
 
 //criar uma property global com set restrito para contar no numnero de contas criadas
 //var totalContas: Int = 0
 //    private set
 
-abstract class Conta(val titular: Cliente, val numero: Int) {
+abstract class Conta(val titular: Cliente, val numero: Int) : Autenticavel{
     var saldo = 0.0
         //protected da acesso ao set do saldo pelas classes filhas
         protected set
@@ -28,6 +29,10 @@ abstract class Conta(val titular: Cliente, val numero: Int) {
         totalContas++
     }
 
+    override fun auth(senha: Int):Boolean{
+        return titular.auth(senha)
+    }
+
     fun deposita(valor: Double) {
         if (valor > 0) {
             this.saldo += valor
@@ -35,5 +40,21 @@ abstract class Conta(val titular: Cliente, val numero: Int) {
     }
 
     abstract fun saque(valor: Double)
+
+    fun transferencia(valor: Double, destino: br.com.alura.bytebank.modelo.Conta, senha: Int) {
+        println("Transferindo $valor da conta $numero para a conta ${destino.numero}")
+
+        if (saldo >= valor) {
+            if (!auth(senha)){
+                throw FalhaAutenticacaoException()
+            } else {
+                this.saldo -= valor
+                destino.deposita(valor)
+            }
+
+        } else {
+            throw SaldoInsuficienteException("\nSaldo: $saldo \nValor da tranferencia: $valor \nSaldo insuficiente para a transferencia")
+        }
+    }
 
 }
