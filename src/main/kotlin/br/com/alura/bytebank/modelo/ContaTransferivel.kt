@@ -1,5 +1,6 @@
 package br.com.alura.bytebank.modelo
 
+import br.com.alura.bytebank.exception.SaldoInsuficienteException
 import br.com.alura.bytebank.modelo.Conta
 
 abstract class ContaTransferivel(titular: Cliente, numero: Int) : br.com.alura.bytebank.modelo.Conta(titular = titular, numero = numero){
@@ -11,7 +12,9 @@ abstract class ContaTransferivel(titular: Cliente, numero: Int) : br.com.alura.b
             this.saldo -= valor
             destino.deposita(valor)
             return true
+        } else {
+            throw SaldoInsuficienteException()
         }
-        return false
+
     }
 }

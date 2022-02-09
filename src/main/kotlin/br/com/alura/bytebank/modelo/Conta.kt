@@ -1,5 +1,7 @@
 package br.com.alura.bytebank.modelo
 
+import br.com.alura.bytebank.exception.SaldoInsuficienteException
+
 //criar uma property global com set restrito para contar no numnero de contas criadas
 //var totalContas: Int = 0
 //    private set
@@ -33,4 +35,5 @@ abstract class Conta(val titular: Cliente, val numero: Int) {
     }
 
     abstract fun saque(valor: Double)
+
 }
