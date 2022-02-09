@@ -1,28 +1,25 @@
+package br.com.alura.bytebank
+
 import br.com.alura.bytebank.modelo.Endereco
 
-fun main(args: Array<String>) {
-
-    val endereco = Endereco("Rua vergueiro",238,"Vila Mariana", "São Paulo", "São Paulo")
-    val enderecoNovo = Endereco("Avenida Domingo de Morais",1036,"Vila Mariana", "São Paulo", "São Paulo")
-
-    println(endereco.equals(enderecoNovo))
-    println()
-    println(endereco.hashCode())
-    println(enderecoNovo.hashCode())
-    println()
-
-    println("Endereço: \n $endereco")
-    println()
-    println("Endereço Novo: \n $enderecoNovo")
-
+fun main() {
+    println("início main")
+    funcao1()
+    println("fim main")
 }
 
+fun funcao1(){
+    println("início funcao1")
+    funcao2()
+    println("fim funcao1")
+}
 
-
-
-
-
-
-
-
-
+fun funcao2() {
+    println("início funcao2")
+    for (i in 1..5){
+        println(i)
+        val endereco = Any()
+        endereco as Endereco
+    }
+    println("fim funcao2")
+} 
